@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/>
+<title>我的挖矿日历</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+<script type="text/javascript" src="http://huodongcdn.chuchujie.com/static/js/jquery_1.7.1.min.js"></script>
+<!--<script type="text/javascript" src="init.js"></script>-->
+<script type="text/javascript">
+var gender = 0,
+    giftNo = 0,
+    timer=null,
+    cnzzTitle = '',
+    needAlert = 'N',
+    fromShare = 0,
+    tag = 0,
+    today = 0;
+    var clicktag = 0;
+
+    var timer2=null;
+    var jiaodu=0; //角度
+    var gift=0; //停止标识
+    var speed=50; //速度
+
+    var itemEraser = new Object;
+    var newitemEraser = new Object;
+    var isPush = getparam('push');
+    isPush = parseInt(isPush);
+    if(isPush==1){
+        cnzzTitle = '推送';
+    }
+    function getGoldInfo(){
+        $.ajax({
+            type: "POST",
+            url: "ajax.php",
+            data: {
+                'action':'getGoldInfo',
+                'shopToken':shopToken,
+                'platform':platform,
+                'version':version,
+                'packageName':packageName,
+                'imei':imei,
+                'deviceId':deviceId,
+                'needAlert':needAlert
+            },
+            dataType:"json",
+            success: function(res){
+                var today = parseInt(res.info.date);
+                if (today < 20160610) {
+                    $('.month2').hide();
+                    $('.month1').show();
+                } else {
+                    $('.month2').show();
+                    $('.month1').hide();
+                }
+                $('#goldNum').text(res.info.gold);
+                setCalendar(res.info.digInfo);
+                if(typeof res.info.continueDay =='undefined'){
+                    $('#daycount').html(7);
+                }else{
+                    $('#daycount').html(7-res.info.continueDay%7);
+                }
+                if(!res.info.head_img){
+                    if(gender==1){
+                       $('.toux').attr('src','http://huodongcdn.chuchujie.com/huodong/gold/new/img/headnan.png');
+                    }else{
+                        $('.toux').attr('src','http://huodongcdn.chuchujie.com/huodong/gold/new/img/headnv.png');
+                    }
+                }else{
+                    $('.toux').attr('src',res.info.head_img);
+                }
+                if(needAlert=='Y'){
+                    if(res.info.alertOn=='Y'){
+                        if(res.info.addAlert){
+                            $('#notifyStat').attr('src','http://huodongcdn.chuchujie.com/huodong/gold/new/img/cloase.png');
+                        }else{
+                            $('#notifyStat').attr('src','http://huodongcdn.chuchujie.com/huodong/gold/new/img/on.png');
+                        }
+                    }else{
+                        $('#notifyStat').attr('src','http://huodongcdn.chuchujie.com/huodong/gold/new/img/cloase.png');
+                    }
+                }
+            },
+            error: function(transport) {
+                $('#layer_server').show();
+            }
+        });
+    }
+    //设置日历
+    function setCalendar(digInfoStr){
+        var infoArr = digInfoStr.split(',');
+        // var addHtml = '<label class="get">';
+        for(x in infoArr){
+            // $('#day'+infoArr[x]).append(addHtml);
+            $('#aday'+infoArr[x]).find('span').addClass('ham');
+            $('#day'+infoArr[x]).find('span').addClass('ham');
+        }
+    }
+
+    function setAlertStat(){
+        if(platform=='android'){
+            var versionArr = version.split('.');
+            var versionNum = parseInt(versionArr[0]*100)+parseInt(versionArr[1]*10)+parseInt(versionArr[2]);
+            if(versionNum>=267){
+                needAlert = 'Y';
+            }else{
+                needAlert ='N';
+            }
+        }
+        if(platform=='iphone'){
+            var versionArr = version.split('.');
+            var versionNum = parseInt(versionArr[0]*10)+parseInt(versionArr[1]);
+            if((packageName == 'com.culiu.huanletao' && versionNum>=18)||(packageName == 'com.culiukeji.JiuKuaiJiu' && versionNum>=33)){
+                needAlert = 'Y';
+            }else{
+                needAlert ='N';
+            }
+        }
+        return;
+    }
+    function useNewNotifyMethod(){
+        if(platform=='android'){
+            var versionArr = version.split('.');
+            var versionNum = parseInt(versionArr[0]*100)+parseInt(versionArr[1]*10)+parseInt(versionArr[2]);
+            if(versionNum>=271){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        if(platform=='iphone'){
+            var versionArr = version.split('.');
+            var versionNum = parseInt(versionArr[0]*10)+parseInt(versionArr[1]);
+            if((packageName == 'com.culiu.huanletao' && versionNum>=25)||(packageName == 'com.culiukeji.JiuKuaiJiu' && versionNum>=39)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+    function test(stat){
+        var querystr = '{"url":"http://huodong-dev.chuchujie.com/goldDigger/index.html","title":"楚楚街挖矿夺宝"}';
+        var data = '{"activityId":1,"template":"WEB","query":'+querystr+',"alarmTime":20,"operation":'+stat+',"ticker":"坚持就是力量~每天挖矿身体好！","title":"亲，今天还没来挖矿,连续挖矿7天还送现金红包哦~","text":"亲，今天还没来挖矿哦，连续挖矿7天还送现金红包哦~","statUrl":""}';
+        if(useNewNotifyMethod()){
+                var date = new Date();
+                var serverCurrentTime = parseInt(date.getTime()/1000);
+                var endTime = 1577808000;
+                var notifyTime = 20*60*60;
+                var dataNew = '{"ticker":"坚持就是力量~每天挖矿身体好！","title":"亲，今天还没来挖矿,连续挖矿7天还送现金红包哦~","text":"亲，今天还没来挖矿哦，连续挖矿7天还送现金红包哦~","silient":'+0+',"notificationId":1,"template":"WEB","query":'+querystr+',"backTemplate":"","adType":'+2+',"backQuery":"","notificationTime":'+notifyTime+',"notificationSwitch":'+stat+',"statUrl":"","adImgUrl":"","serverCurrentTime":'+serverCurrentTime+',"endTime":'+endTime+',"startTime":'+serverCurrentTime+'}';
+                if(/i(Phone|P(o|a)d)/.test(navigator.userAgent)){
+                    if(!useNewNotify_IOS()){
+                        dataNew = data;         //ios新版本修正了数据结构
+                    }
+                }
+                CcjJSBridge.call(
+                        'localNotification_v2',
+                        dataNew,
+                        function(res){
+                        }
+                );
+            }else{
+                CcjJSBridge.call(
+                        'localNotification',
+                        data,
+                        function(res){
+                        }
+                );
+            }
+    }
+     //挖矿提醒
+    function notify_new(){
+        var alertInfo;
+        var stat;
+        if($('#notifyStat').attr('src')=='http://huodongcdn.chuchujie.com/huodong/gold/new/img/on.png'){
+            alertInfo = 'N';
+            stat = 0;
+            $('#notifyStat').attr('src','http://huodongcdn.chuchujie.com/huodong/gold/new/img/cloase.png');
+            _czc.push(['_trackEvent',cnzzTitle+'挖矿用户关闭提醒','关闭提醒点击数']);
+        }else{
+            alertInfo = 'Y';
+            stat = 1;
+            $('#notifyStat').attr('src','http://huodongcdn.chuchujie.com/huodong/gold/new/img/on.png');
+            _czc.push(['_trackEvent',cnzzTitle+'挖矿用户开启提醒','开启提醒点击数']);
+        }
+        var querystr = '{"url":"http://huodong-dev.chuchujie.com/goldDigger/index.html","title":"楚楚街挖矿夺宝"}';
+        var data = '{"activityId":1,"template":"WEB","query":'+querystr+',"alarmTime":20,"operation":'+stat+',"ticker":"坚持就是力量~每天挖矿身体好！","title":"亲，今天还没来挖矿,连续挖矿7天还送现金红包哦~","text":"亲，今天还没来挖矿哦，连续挖矿7天还送现金红包哦~","statUrl":""}';
+
+
+        if(typeof(CcjJSBridge) != 'undefined'){
+            $.ajax({
+                type: "POST",
+                url: "ajax.php",
+                data: {
+                    'action':'setNotify',
+                    'shopToken':shopToken,
+                    'platform':platform,
+                    'version':version,
+                    'packageName':packageName,
+                    'imei':imei,
+                    'deviceId':deviceId,
+                    'needAlert':alertInfo
+                },
+                dataType:"json",
+                success: function(res){
+                    if(useNewNotifyMethod()){
+                        var serverCurrentTime = parseInt(res.info.currentTime);
+                        var endTime = 1577808000;
+                        var notifyTime = 20*60*60;
+                        var dataNew = '{"ticker":"坚持就是力量~每天挖矿身体好！","title":"亲，今天还没来挖矿,连续挖矿7天还送现金红包哦~","text":"亲，今天还没来挖矿哦，连续挖矿7天还送现金红包哦~","silient":'+0+',"notificationId":1,"template":"WEB","query":'+querystr+',"backTemplate":"","adType":'+2+',"backQuery":"","notificationTime":'+notifyTime+',"notificationSwitch":'+stat+',"statUrl":"","adImgUrl":"","serverCurrentTime":'+serverCurrentTime+',"endTime":'+endTime+',"startTime":'+serverCurrentTime+'}';
+                        if(/i(Phone|P(o|a)d)/.test(navigator.userAgent)){
+                            if(!useNewNotify_IOS()){
+                                dataNew = data;         //ios新版本修正了数据结构
+                            }
+                        }
+                        CcjJSBridge.call(
+                            'localNotification_v2',
+                            dataNew,
+                            function(res){
+                            }
+                        );
+                    }else{
+                        CcjJSBridge.call(
+                            'localNotification',
+                            data,
+                            function(res){
+                            }
+                        );
+                    }
+                },
+                error: function(transport) {
+
+                }
+            });
+        }
+    }
+
+    function useNewNotify_IOS(){
+        if(platform=='iphone'){
+            var versionArr = version.split('.');
+            var versionNum = parseInt(versionArr[0]*10)+parseInt(versionArr[1]);
+            if((packageName == 'com.culiu.huanletao' && versionNum>=28)||(packageName == 'com.culiukeji.JiuKuaiJiu' && versionNum>=40)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+
+    /*取消今日提醒*/
+    function cancelNotify(){
+        if(typeof(CcjJSBridge) != 'undefined'){
+            CcjJSBridge.call(
+                    'cancelTodayNotification',
+                    1,
+                    function(res){
+
+                    }
+            );
+        }
+    }
+
+     /*
+     * 获得url参数
+     * @returns {undefined}
+     */
+    function getparam(param){
+        //获取当前URL
+        var local_url = document.location.href;
+        //获取要取得的get参数位置
+        var get = local_url.indexOf(param +"=");
+        if(get == -1){
+            return false;
+        }
+        //截取字符串
+        var get_par = local_url.slice(param.length + get + 1);
+        //判断截取后的字符串是否还有其他get参数
+        var nextPar = get_par.indexOf("&");
+        if(nextPar != -1){
+            get_par = get_par.slice(0, nextPar);
+        }
+        return decodeURI(get_par);
+    }
+
+    var _czc = _czc || [];
+    _czc.push(["_trackPageview",cnzzTitle+'挖矿日历加载量']);
+    _czc.push(["_setAutoPageview",false]);
+
+</script>
+<script type="text/template" id="main_body">-->
+<!--头部部分 start-->
+<header class="top">
+    <img class="banner" src="img/banner_02.png"/>
+    <img class="toux" src="http://huodongcdn.chuchujie.com/huodong/gold/new/img/headnv.png" id="headimg"/>
+    <div class="title">
+        <p class="p_1">再连续挖矿<em id="daycount">0</em>天，可领取3元红包</p>
+        <p class="p_2">每晚<em>8点</em>提醒我</p>
+    </div>
+     <img src="http://huodongcdn.chuchujie.com/huodong/gold/new/img/on.png" class="kguan" id='notifyStat' onclick="notify_new()">
+</header>
+<!--头部部分 end-->
+<!--日历表 start-->
+<section class="list_con">
+    <div class="rili" style="position:relative;">
+    <p class="coin" style="position:absolute;top:6px; right:10px; color:#ff0641; font-size:1.1rem;">
+        <img class="coin_pic" src="http://huodongcdn.chuchujie.com/huodong/gold/new/img/coin.png" style='width:30px; margin-right:3px; vertical-align:middle;'>X<lable id="goldNum"></lable>
+    </p>
+        <h2 class="biaoti">我的挖矿日历</h2>
+         <ul class="zhou clearfix">
+            <li>日</li>
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+            <li>四</li>
+            <li>五</li>
+            <li>六</li>
+        </ul>
+        <ul class="zhou_1 clearfix  month1">
+            <li></li>
+            <li></li>
+            <li class="cur" id="aday1"><span></span><i>5.</i>10</li>
+            <li id="aday2"><span></span>11</li>
+            <li id="aday3"><span></span>12</li>
+            <li id="aday4"><span></span>13</li>
+            <li id="aday5"><span></span>14</li>
+            <li id="aday6"><span></span>15</li>
+            <li id="aday7"><span></span>16</li>
+            <li id="aday8"><span></span>17</li>
+            <li id="aday9"><span></span>18</li>
+            <li id="aday10"><span></span>19</li>
+            <li id="aday11"><span></span>20</li>
+            <li id="aday12"><span></span>21</li>
+            <li id="aday13"><span></span>22</li>
+            <li id="aday14"><span></span>23</li>
+            <li id="aday15"><span></span>24</li>
+            <li id="aday16"><span></span>25</li>
+            <li id="aday17"><span></span>26</li>
+            <li id="aday18"><span></span>27</li>
+            <li id="aday19"><span></span>28</li>
+            <li id="aday20"><span></span>29</li>
+            <li id="aday21"><span></span>30</li>
+            <li id="aday22"><span></span>31</li>
+            <li class="cur" id="aday23"><span></span><i>6.</i>1</li>
+            <li id="aday24"><span></span>2</li>
+            <li id="aday25"><span></span>3</li>
+            <li id="aday26"><span></span>4</li>
+            <li id="aday27"><span></span>5</li>
+            <li id="aday28"><span></span>6</li>
+            <li id="aday29"><span></span>7</li>
+            <li id="aday30"><span></span>8</li>
+            <li id="aday31" class="active"><em>9</em><img class="gif" src="http://huodongcdn.chuchujie.com/huodong/gold/new/img/gift.png"/></li>
+        </ul>
+        <ul class="zhou_1 clearfix month2 Ndisplay">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li class="cur" id="day1"><span></span><i>6.</i>10</li>
+            <li id="day2"><span></span>11</li>
+            <li id="day3"><span></span>12</li>
+            <li id="day4"><span></span>13</li>
+            <li id="day5"><span></span>14</li>
+            <li id="day6"><span></span>15</li>
+            <li id="day7"><span></span>16</li>
+            <li id="day8"><span></span>17</li>
+            <li id="day9"><span></span>18</li>
+            <li id="day10"><span></span>19</li>
+            <li id="day11"><span></span>20</li>
+            <li id="day12"><span></span>21</li>
+            <li id="day13"><span></span>22</li>
+            <li id="day14"><span></span>23</li>
+            <li id="day15"><span></span>24</li>
+            <li id="day16"><span></span>25</li>
+            <li id="day17"><span></span>26</li>
+            <li id="day18"><span></span>27</li>
+            <li id="day19"><span></span>28</li>
+            <li id="day20"><span></span>29</li>
+            <li id="day21"><span></span>30</li>
+            <li class="cur" id="day22"><span></span><i>7.</i>1</li>
+            <li id="day23"><span></span>2</li>
+            <li id="day24"><span></span>3</li>
+            <li id="day25"><span></span>4</li>
+            <li id="day26"><span></span>5</li>
+            <li id="day27"><span></span>6</li>
+            <li id="day28"><span></span>7</li>
+            <li id="day29"><span></span>8</li>
+            <li id="day30" class="active"><em>9</em><img class="gif" src="http://huodongcdn.chuchujie.com/huodong/gold/new/img/gift.png"/></li>
+        </ul>
+    </div>
+</section>
+<!--日历表 end-->
+<!--入口start-->
+<a href="#" class="wk_ad">
+	<img src="img/byou.png" width="100%"/>
+</a>
+<!--入口end-->
+<!--活动规则 start-->
+<section class="sport_txt">
+    <div class="hd_txt">
+        <div class="gze" style="line-height:25px">
+            <h2 class="rule_tt">活动规则：</h2>
+            <div class="month2">
+                1.	每天挖矿可获得一个金币，每连续挖矿7天可获得一张金币兑换券（可以充当金币兑换宝物），每月9日24点金币清零，金币兑换券可以累积，上限9张；<br/>
+                2.	每月9日为宝贝兑换日，集齐30个金币，同时在6月10日~7月9日期间在楚楚街至少有一次实际支付金额大于5元，即可免费兑换一件宝物，不限量哦，包邮到家；<br/>
+                3.  每月9号满足挖矿规则后需进入挖矿页面手动填写收货信息，完成兑换；<br/>
+                4.	每月10日是新一期开始日，记得来挑选你喜欢的宝物，选定后在兑换日前不能更改；<br/>
+                5.	为防止作弊行为，挖矿活动每月同一手机、收件人、收货地址只可兑换一件；<br/>
+                6.	9日兑奖完成后，请在3个工作日内反馈问题，超时默认为兑奖成功；<br/>
+                7.	在法律允许范围内，楚楚街拥有本次活动的最终解释权。<br/>
+                *本活动由楚楚街发起，与苹果公司无关！
+            </div>
+            <div class="month1 Ndisplay">
+                1.	每天挖矿可获得一个金币，每连续挖矿7天可获得一张金币兑换券（可以充当金币兑换宝物），每月9日24点金币清零，金币兑换券可以累积，上限9张；<br/>
+                2.	每月9日为宝贝兑换日，集齐30个金币，同时在5月10日~6月9日期间在楚楚街至少有一次实际支付金额大于5元，即可免费兑换一件宝物，不限量哦，包邮到家；<br/>
+                3.  每月9号满足挖矿规则后需进入挖矿页面手动填写收货信息，完成兑换；<br/>
+                4.	每月10日是新一期开始日，记得来挑选你喜欢的宝物，选定后在兑换日前不能更改；<br/>
+                5.	为防止作弊行为，挖矿活动每月同一手机、收件人、收货地址只可兑换一件；<br/>
+                6.	9日兑奖完成后，请在3个工作日内反馈问题，超时默认为兑奖成功；<br/>
+                7.	在法律允许范围内，楚楚街拥有本次活动的最终解释权。<br/>
+                *本活动由楚楚街发起，与苹果公司无关！
+            </div>
+        </div>
+    </div>
+</section>
+<!--活动规则 end-->
+</script>
+<div style="display: none;">
+    <div id="cnzz_ccj"></div>
+    <span id='cnzz_stat_icon_1256092095'></span><script id="cnzz_script" type='text/javascript'></script>
+    <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        $(function () {
+            setTimeout(function(){
+                var oHead = document.getElementsByTagName('HEAD').item(0);
+                var oScript= document.createElement("script");
+                oScript.type = "text/javascript";
+                oScript.src="http://s95.cnzz.com/z_stat.php?id=1256092095&show=pic";
+                oHead.appendChild(oScript);document.write=function(){};
+                //document.write=function(){};//屏蔽CNZZ写入
+            }, 300);
+        })
+    </script>
+</div>
+</body>
+</html>
+

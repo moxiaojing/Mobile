@@ -1,0 +1,475 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/>
+<title>都市魅力</title>
+<style>
+body{font-size:12px; min-width:320px; font-family:"sans-serif"; font-weight:normal; line-height:1.5;}
+html,body,h1,h2,h3,p,div,ul,li,span,p,em,i{margin:0;padding:0;}
+ul,li{list-style:none;}
+html,body,img,button{border:0;}
+em{font-style:normal;}			
+h2,h2,h3,strong,em,i{ font-style:normal; font-weight:normal;}
+a,a:hover{text-decoration:none;}
+.clearfix:after{clear:both; content:''; font-size:0; display:block; visibility:hidden; height:0}
+.Ndisplay{ display:none;}
+.Idisplay{ display:inline-block;}
+.Bdisplay{ display:block;}
+.align-ct{ text-align:center;}
+.mt10{ margin-top:10px;}
+/*颜色*/
+.ftfen{ color:#ff4a93;}
+.ftgrey{ color:#515151;}
+.ftjin{ color:#ffff00;}
+.ftblue{ color:#00cbe9;}
+.ftzi{ color:#ac1adc;}
+.ftlan{ color:#9c2eff;}
+.ftgreen{ color:#75c531;}
+.ftzse{ color:#8a1fff;}
+/*字体*/
+.ftfff{ color:fff;}
+.ft07{ font-size:0.7rem;}
+.ft08{ font-size:0.8rem;}
+.ft09{ font-size:0.9rem;}
+.ft1{ font-size:1rem;}
+.ft12{ font-size:1.2rem;}
+/*头部部分*/
+.ban{ width:100%; display:block;}
+/*tab部分*/
+.poFixed {position:fixed; left: 0; top: 0; width:100%; z-index:100;}
+.ban{ width:100%; display:block;}
+.tab{ width:100%; color:#b49bff; background:#f3c2ff; }
+.tab li{height:40px; width:16.6%;  float:left; line-height:40px; color:#fff; position:relative; }
+.tab .cur{ color:#ffff32; background:#dc72ff; color:#8728a6; }
+.line{ width:10px; height:30px; border-right:1px dashed #fff; position:absolute; top:5px; right:0;}
+/*商品部分*/
+.ticke{ position:relative;}
+.zm,.ym{ width:50%; height:100%; position:absolute;}
+.zm{ left:0;top:0;}
+.ym{ right:0; top:0;}
+.fashion{ position:relative;}
+.zbian{ width:50%; height:100%; position:absolute; left:0;top:0;}
+.zbian.yr{ right:0; left:auto;s}
+.goods{ width:50%; position:absolute; top:10px;right:0;}
+.goods.zr{ left:0;}
+.tu{ padding:0 10px 0 20px;}
+.tt{ line-height:18px; margin:4px 0; overflow:hidden;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.qian{float:left;}
+.price{ float:right;}
+@media screen and (min-width:320px) and (max-width:360px)
+{
+	.qian{width:57px;}
+	.price{ font-size:0.9rem;}
+}
+@media screen and (min-width:360px)
+{
+	.qian{width:66px;}
+	.price{ font-size:1rem;}
+}
+footer{ height:40px; line-height:40px; color:#444; }
+/*弹窗*/
+.layer{ background:rgba(0,0,0,0.8); position:fixed; top:0; left:0; width:100%; height:100%; z-index:2998;}
+.layer_box{position:fixed; top:50%; left:50%; margin-left:-140px; width:280px; z-index:2999;}
+.layer_box.other{margin-top:-150px;}
+.win_box{ font-size:1.8rem;width:50%; width:100%; height:70px; background:url(img/win_1.png) no-repeat; background-size:100% 100%; line-height:70px;}
+</style>
+</head>
+
+<body>
+<!--头部部分-->
+<header><img class="ban" src="img/ba.png"/></header>
+<!------导航部分------>
+<ul class="tab clearfix align-ct ft08">
+	<li class="cur">女装<i class="line"></i></li>
+	<li>美妆<i class="line"></i></li>
+	<li>鞋靴<i class="line"></i></li>
+	<li>箱包<i class="line"></i></li>
+	<li>内衣<i class="line"></i></li>
+	<li>食品</li>
+</ul>
+<!--靓丽女装-->
+<img class="ban" src="img/tt_1.png"/>
+<p class="ticke">
+	<img class="ban" src="img/yhq_1.png"/>
+    <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+</p>
+<div class="list" id="0">
+    <div class="fashion">
+        <img class="ban" src="img/pic_1.png"/>
+        <a class="zbian" href="javascript:;"></a>
+        <div class="goods">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_1.png"/><span class=" price ftjin">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>               
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_1.png"/><span class=" price ftjin">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_2.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_2.png"/>
+        <a class="zbian yr" href="javascript:;"></a>
+        <div class="goods zr">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_1.png"/><span class=" price ftjin">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_1.png"/><span class=" price ftjin">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+</div>
+<!--清新美妆-->
+<div class="list" id="1">
+    <img class="ban" src="img/tt_2.png"/>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_3.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_3.png"/>
+        <a class="zbian" href="javascript:;"></a>
+        <div class="goods">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_2.png"/><span class=" price ftblue">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>               
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_2.png"/><span class=" price ftblue">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_4.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_4.png"/>
+        <a class="zbian yr" href="javascript:;"></a>
+        <div class="goods zr">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_2.png"/><span class=" price ftblue">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_2.png"/><span class=" price ftblue">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+</div>
+<!--品质鞋靴-->
+<div class="list" id="2">
+    <img class="ban" src="img/tt_3.png"/>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_5.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_5.png"/>
+        <a class="zbian" href="javascript:;"></a>
+        <div class="goods">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_3.png"/><span class=" price ftzi">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>               
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_3.png"/><span class=" price ftzi">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_6.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_6.png"/>
+        <a class="zbian yr" href="javascript:;"></a>
+        <div class="goods zr">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_3.png"/><span class=" price ftzi">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_3.png"/><span class=" price ftzi">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+</div>
+<!--新潮箱包-->
+<div class="list" id="3">
+    <img class="ban" src="img/tt_4.png"/>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_7.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_7.png"/>
+        <a class="zbian" href="javascript:;"></a>
+        <div class="goods">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_4.png"/><span class=" price ftgreen">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>               
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_4.png"/><span class=" price ftgreen">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_8.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_8.png"/>
+        <a class="zbian yr" href="javascript:;"></a>
+        <div class="goods zr">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_4.png"/><span class=" price ftgreen">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_4.png"/><span class=" price ftgreen">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+</div>
+<!--性感内衣-->
+<div class="list" id="4">
+    <img class="ban" src="img/tt_5.png"/>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_9.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_9.png"/>
+        <a class="zbian" href="javascript:;"></a>
+        <div class="goods">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_5.png"/><span class=" price ftfen">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>               
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_5.png"/><span class=" price ftfen">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_10.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_10.png"/>
+        <a class="zbian yr" href="javascript:;"></a>
+        <div class="goods zr">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_5.png"/><span class=" price ftfen">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_5.png"/><span class=" price ftfen">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+</div>
+<!--贪吃零食-->
+<div class="list" id="5">
+    <img class="ban" src="img/tt_6.png"/>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_11.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_11.png"/>
+        <a class="zbian" href="javascript:;"></a>
+        <div class="goods">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_6.png"/><span class=" price ftlan">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>               
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_6.png"/><span class=" price ftlan">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+    <p class="ticke">
+        <img class="ban" src="img/yhq_12.png"/>
+        <a class="zm" href="javascript:;"></a><a class="ym" href="javascript:;"></a>
+    </p>
+    <div class="fashion">
+        <img class="ban" src="img/pic_12.png"/>
+        <a class="zbian yr" href="javascript:;"></a>
+        <div class="goods zr">
+            <a href="javascript:;">
+                <div class="tu">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_6.png"/><span class=" price ftlan">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+            <a href="javascript:;">
+                <div class="tu mt10">
+                    <img class="ban" src="img/shop.png"/>
+                    <h2 class="tt ftgrey ft09">产品名称产品名称产品名称产品名称</h2>
+                    <p class="clearfix">
+                        <img class="qian" src="img/mark_6.png"/><span class=" price ftlan">RMB:888.8</span>
+                    </p>
+                </div>
+            </a>  
+        </div>
+    </div>
+</div>
+<!--优惠券领取成功 start-->
+<div class="container popuplayer Ndisplay">
+    <div class="layer"></div>
+    <div class="layer_box other">
+    	<img class="ban" src="img/win_2.png"/>
+        <div class="win_box ftzse align-ct">优惠券领取成功</div>
+        <img class="ban" src="img/win_4.png"/>
+    </div>
+</div>
+<!--来晚啦 start-->
+<div class="container popuplayer Ndisplay">
+    <div class="layer"></div>
+    <div class="layer_box ">
+        <div class="win_box ftzse align-ct">抱歉亲,来晚了~</div>
+    </div>
+</div>
+<!--底部-->
+<footer class="ft1 align-ct">亲, 到底了~</footer>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/demo.js"></script>

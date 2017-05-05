@@ -1,0 +1,806 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/>
+<title>无标题文档</title>
+<style>
+body{font-size:12px; min-width:320px; font-family:"sans-serif"; background:#fff; font-weight:normal; line-height:1.5;}
+html,body,h1,h2,h3,p,div,ul,li,span,p,em,i{margin:0;padding:0;}
+ul,li{list-style:none;}
+html,body,img,button{border:0;}
+em{font-style:normal;}			
+h2,h2,h3,strong,em,i{ font-style:normal; font-weight:normal;}
+a,a:hover{text-decoration:none;}
+.clearfix:after{clear:both; content:''; font-size:0; display:block; visibility:hidden; height:0}
+.Ndisplay{ display:none;}
+.Idisplay{ display:inline-block;}
+.Bdisplay{ display:block;}
+.align-ct{ text-align:center;}
+.mt5{ margin-top:5px;}
+/*字体*/
+.ftfff{ color:#fff;}
+.ft07{ font-size:0.7rem;}
+.ft08{ font-size:0.8rem;}
+.ft09{ font-size:0.9rem;}
+.ft1{ font-size:1rem;}
+.mt10{ margin-top:10px;}
+/*头部部分*/
+.ban{ width:100%; display:block;}
+/*商品部分*/
+.con_bg{ background:#fa4462;}
+.list li .box{ background:#fff;}
+@media screen and (min-width:320px) and (max-width:359px)
+{
+	.list{ margin:0 1px;}
+	.list li .box{ margin:0 1px; padding-bottom:3px;}
+	.list li{ width:50%; margin-bottom:4px;float:left;}	
+	.mtf10{ margin-top:-4px;}
+}	
+@media screen and (min-width:359px) 
+{
+	.list{ margin:0 5px}
+	.list li .box{ margin:0 5px; padding-bottom:5px;}
+	.list li{ width:50%; margin-bottom:10px;float:left;}
+	.mtf10{ margin-top:-10px;}	
+}
+@media screen and (min-width:320px) and (max-width:370px)
+{
+	.ftprice{ font-size:0.7rem;}
+	.ftjiage{ font-size:1rem;}	
+
+}
+@media screen and (min-width:370px)
+{
+	.ftprice{ font-size:0.8rem;}
+	.ftjiage{ font-size:1.2rem;}	
+}	   
+.list li .s_img{ width:100%; position:relative;}
+.n_bg{ position:absolute; left:0; top:0;}
+.list li .s_img img{ width:100%; float:left;}	
+.list li .s_img .ccj_price{ position:absolute; bottom:-15px; left:50%; margin-left:-25px; width:60px; height:45px; line-height:16px; padding-top:15px; background:url(../img/icon_2.png) no-repeat; background-size:100% 100%;}
+.list li .s_info{ padding:0 5px; position:relative;}
+.list li h2{ line-height:18px; margin:5px 0; overflow:hidden;font-size:0.9rem;color:#000;overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:bold; text-align:center;}	
+.list li .price{ display:block; padding-bottom:3px; line-height:16px;}	
+.list li .price span em,.list li .price span i{ float:left;}
+.list li .price span em.jiage{ margin-top:0px; color:#ff1255; font-weight:bold;}
+.list li .price i{ font-size:0.7rem;}
+.list li .yjprice{color:#727272; font-size:0.7rem; margin-top:2px; text-decoration:line-through;}
+.list li a{display:block;}
+.list li a .price,.list li a .contrast_price{ color:#000;}
+.pic.sm{ width:90%; margin:5px auto 10px;}
+.btn{ width:120px; height:25px; line-height:25px; background:#ff1255;}
+.outer{ padding:0 10px 20px;}
+/*tab部分*/
+.fc{ background:rgba(0,0,0,0.5); position:fixed; top:0; left:0; width:100%; height:100%; z-index:6; display:none;}
+.pack { background:#fff; position:relative; font-size:0.8rem; z-index:300;}
+.tab{ width:88%; background:#fff; padding:5px 0 5px 12%;}
+.myCheck { height:42px; line-height:42px; padding-left:10px; border-bottom:solid 1px #ababab;}
+.myCheck a{ color:#ababab;}
+.tab_1,.tab{ height:42px;}
+.tab li { height: 25px; line-height: 25px; width:33.33%; color:#ababab; float:left; position:relative;}
+.tab li i{ width:8px; height:12px; background:url(img/icon_1.png) no-repeat; background-size:100% 100%; display:none; position:absolute; top:50%; left:-10px; margin-top:-7px;}
+.pack .cur{ color:#ff0044;}
+.tab li.cur i,.tab_1 li.cur i{ display:inline-block;}
+.dw{ position:absolute; right:0px;top:0;padding-right:50px; height:42px; background:#fff;z-index:1;}
+.dw.other{right:0px; height:42px;}
+.dw.other .up{ top:17px;}
+.line{ display:inline-block; width:1px; height:100%; background:#949494;}
+.up{ width:18px; vertical-align:middle; position:absolute;top:17px; right:18px;}
+.poFixed {position:fixed; left: 0; width:100%; top: 0; z-index:100;}
+.tab_1_con{overflow:hidden; height:42px; line-height:42px; position:relative; box-shadow:0 2px 0 rgba(0,0,0,.5);}
+.tab_1 li{ height:42px; line-height:42px; padding:0 10px; float:left;}
+.tab_1 li i{ width:8px; height:12px; margin:-2px 3px 0 0; vertical-align:middle; background:url(img/icon_1.png) no-repeat; background-size:100% 100%; display:none;}
+</style>
+</head>
+
+<body>
+<!----------TAB start---------->
+<div class="layer Ndisplay" id="zhe"></div>
+<div class="pack Ndisplay">
+    <div class="Ndisplay">
+        <p class="myCheck"><a href="javascript:;">切换楼层</a></p>
+        <p class="dw" data-index="0"><span class="line"></span><img class="up" src="http://huodongcdn.chuchujie.com/20160409/0911/img/up.png" data-index="0"/></p>
+        <ul class="clearfix tab">
+            <li class="cur"><i></i>少女爆款</li>
+            <li><i></i>保养好</li>
+            <li><i></i>包装萌</li>
+            <li><i></i>下午茶</li>
+            <li><i></i>餐具美</li>
+            <li><i></i>晒图赞</li>
+            <li><i></i>少女在爱逛</li>
+        </ul>
+    </div>
+    <div class="tab_1_con">
+    	<p class="dw other" data-index="1"><span class="line"></span><img class="up" src="http://huodongcdn.chuchujie.com/20160409/0911/img/down.png" data-index="1"/></p>
+        <ul class="clearfix tab_1 align-ct" id="drag" style="transform-origin: 0px 0px 0px; transform:scale(1, 1); transition: none;transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+            <li class="cur"><i></i>少女爆款</li>
+            <li><i></i>保养好</li>
+            <li><i></i>包装萌</li>
+            <li><i></i>下午茶</li>
+            <li><i></i>餐具美</li>
+            <li><i></i>晒图赞</li>
+            <li><i></i>少女在爱逛</li>
+        </ul>
+    </div>
+</div>
+<!----------TAB end---------->
+<header>
+	<img class="ban" src="img/ban.png"/>
+</header>
+<!--必备爆款抢购区-->
+ <div class="list clearfix" id="0">
+ 	<img class="ban" src="img/tt_1.png"/>
+    <ul class="clearfix mt10"><!--list start-->
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">502</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>                         
+                    </div> 
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>          
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p>
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>                        
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+    </ul><!--list end-->
+</div>
+<!--不老少女保养好-->
+ <div class="list clearfix" id="1">
+ 	<img class="ban mt10" src="img/tt_2.png"/>
+    <ul class="clearfix mt10"><!--list start-->
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">502</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>                         
+                    </div> 
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>          
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p>
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>                        
+                    </div>
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+    </ul><!--list end-->
+</div>
+<!--戳中少女心-->
+ <div class="list clearfix" id="2">
+ 	<img class="ban mt10" src="img/tt_3.png"/>
+    <ul class="clearfix mt10"><!--list start-->
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">502</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>                         
+                    </div> 
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p>
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>                        
+                    </div>
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span><br/>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+    </ul><!--list end-->
+</div>
+<!--享受精致下午茶-->
+ <div class="list clearfix" id="3">
+ 	<img class="ban mt10" src="img/tt_4.png"/>
+    <ul class="clearfix mt10"><!--list start-->
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">502</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>                         
+                    </div> 
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>          
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p>
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>                        
+                    </div>
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+    </ul><!--list end-->
+</div>
+<!--餐具摆盘装点美-->
+ <div class="list clearfix" id="4">
+ 	<img class="ban mt10" src="img/tt_5.png"/>
+    <ul class="clearfix mt10"><!--list start-->
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">502</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>                         
+                    </div> 
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p>
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>                        
+                    </div>
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+    </ul><!--list end-->
+</div>
+<!--拍的好晒图赞-->
+ <div class="list clearfix" id="5">
+ 	<img class="ban mt10" src="img/tt_6.png"/>
+    <ul class="clearfix mt10"><!--list start-->
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">502</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>                         
+                    </div> 
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p>
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>                        
+                    </div>
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+    </ul><!--list end-->
+</div>
+<!--少女最爱逛-->
+ <div class="list clearfix" id="6">
+ 	<img class="ban mt10" src="img/tt_7.png"/>
+    <ul class="clearfix mt10"><!--list start-->
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">502</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>                         
+                    </div> 
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p>
+                       <p class="btn align-ct ft08 ftfff">立即抢购></p>                        
+                    </div>
+                </a>
+             </div>
+        </li>
+        <li>
+            <div class="box">                    
+                <a href="javascript:;">         
+                    <div class="s_img clearfix">
+                        <img src="img/shop.png" alt="" />
+                        <img class="ban n_bg" src="img/bg.png"/>
+                    </div>
+                    <div class="s_info">
+                        <h2>人气标题标题标题标题标题标题标题标题标题标题标</h2>
+                        <p class="price ftprice clearfix">
+                           <span>
+                              <em>活动价:</em>
+                              <i>￥</i>
+                              <em class="jiage ftjiage">5020</em>
+                           </span><br/>           
+                           <span class="yjprice"><del>￥10000</del></span>                    
+                        </p> 
+                        <p class="btn align-ct ft08 ftfff">立即抢购></p>
+                    </div>
+                </a>
+             </div>
+        </li>                
+    </ul><!--list end-->
+</div>
+<div class="outer">
+	<a href="javascript:;"><img class="ban mt10" src="img/tu_1.png"/></a>
+	<a href="javascript:;"><img class="ban mt10" src="img/tu_2.png"/></a>
+	<a href="javascript:;"><img class="ban mt10" src="img/tu_3.png"/></a>
+	<a href="javascript:;"><img class="ban mt10" src="img/tu_4.png"/></a>
+	<a href="javascript:;"><img class="ban mt10" src="img/tu_5.png"/></a>
+	<a href="javascript:;"><img class="ban mt10" src="img/tu_6.png"/></a>
+	<a href="javascript:;"><img class="ban mt10" src="img/tu_7.png"/></a>
+	<a href="javascript:;"><img class="ban mt10" src="img/tu_8.png"/></a>
+	<a href="javascript:;"><img class="ban mt10" src="img/tu_9.png"/></a>
+	<a href="javascript:;"><img class="ban mt10" src="img/tu_10.png"/></a>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/demo.js"></script>
