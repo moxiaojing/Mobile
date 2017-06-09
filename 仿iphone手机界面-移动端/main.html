@@ -110,9 +110,27 @@
 				</div>
 				<div class="app_open">
 					<p>app正在建设中...</p>
-					<span class="glyphicon glyphicon-home app_home"></span>
+					<span class="glyphicon glyphicon-home _home"></span>
 				</div>
-				
+				<div class="photo_open">
+					<ul class="photo_wrap" >
+						
+					</ul>
+					<span class="glyphicon glyphicon-home _home"></span>	
+					
+					<div class="bigImg_open">
+						<ul class="bigImg_wrap">	
+							
+						</ul>
+					</div>
+					
+					<div class="photo_titie">
+						<span class="del_ico glyphicon glyphicon-trash" ></span>
+						<span class="back glyphicon glyphicon-chevron-left" ></span>
+						<p>已选择0项</p>
+						<span class="sel" data-onoff = "false" >选择</span>
+					</div>
+				</div>
 			</section>
 						
 			<div class="head_sider"></div>
@@ -174,7 +192,7 @@
 					<% for( var j=0; j<data[i].apps.length; j++ ){ %>
 						<li class="app" data-index = <%= data[i].apps[j].index %> data-candel = <%= data[i].apps[j].canDel %> >
 						<img src=<%= data[i].apps[j].src %> alt="" />
-						<span><%= data[i].apps[j].title %></span>
+						<span class="app_title"><%= data[i].apps[j].title %></span>
 						<% if( data[i].apps[j].canDel === "true" ){ %>
 							<em class="con_apps_del glyphicon glyphicon-remove" ></em>
 						<% } %>
@@ -184,10 +202,23 @@
 			<%}%>
 		</script>
 		
+		
+		<!--模板引擎，生成相册app图片页面-->
+		<script type="text/html" id="photo_pageHTML">
+			<% for( var i=0; i<photosData.length; i++ ){ %>
+				<li class="img_box" data-index=<%= i %> >
+					<img src=<%= photosData[i] %> alt="" />
+				</li>
+			<%}%>
+		</script>
+		
+		
 			<!--渲染页面-->
 		<script src="js/renderHtml.js"></script>
 			<!-- 可自定义的弹框封装 -->
 		<script src="js/dialog.js" ></script>
+				<!-- isScroll -->
+		<script src="js/iscroll.js" > </script>
 			<!-- 主要交互 -->
 		<script src="js/main.js"></script>
 	</body>

@@ -77,17 +77,18 @@
   height: 9.06666667rem;
   position: absolute;
   left: 0;
-  top: 10%;
+  top: 8%;
   color: #fff;
   text-align: center;
-  line-height: 9.06666667rem;
+  line-height: 7rem;
 }
 .lockS_time h2 {
-  font-size: 7.06666667rem;
-  padding: 2rem 0;
+  font-size: 9rem;
+  padding: 0.66666667rem 0;
 }
 .lockS_time div {
   font-size: 2rem;
+  line-height: 6.33333333rem;
 }
 .lockS_open {
   width: 60%;
@@ -106,7 +107,7 @@
   background-blend-mode: hard-light;
   background-size: 200%;
   animation: shine 1s infinite;
-  -webkit-animation: shine 1s infinite;
+  -webkit-animation: shine 2s infinite;
 }
 @-webkit-keyframes shine {
   from {
@@ -287,7 +288,8 @@
   top: 50vh;
   left: 10vw;
 }
-.app_open span {
+.app_open ._home,
+.photo_open ._home {
   position: absolute;
   top: 90%;
   right: 5%;
@@ -296,19 +298,21 @@
   line-height: 5.33333333rem;
   text-align: center;
   font-size: 3.33333333rem;
-  background: #000;
   color: #fff;
 }
 #mask {
-  width: 100%;
-  height: 100%;
   background: #333333;
   opacity: 0.4;
+  display: none;
+  z-index: 100;
+}
+#mask,
+.bigimg {
+  width: 100vw;
+  height: 100vh;
   position: absolute;
   left: 0;
   top: 0;
-  display: none;
-  z-index: 100;
 }
 .dialog {
   width: 33.333333rem;
@@ -335,10 +339,15 @@
   transform: translateY(0);
   z-index: 100;
 }
+.head_sidebar_lock {
+  background: url(../img/warp01mh.png) no-repeat;
+}
+.head_sidebar_Unlock {
+  background: url(../img/warp03mh.png) no-repeat;
+}
 .head_sidebar {
   width: 100vw;
   height: 100vh;
-  background: url(../img/warp03mh.png) no-repeat;
   background-size: 100% 100%;
   position: absolute;
   left: 0;
@@ -376,7 +385,7 @@
   color: #fff;
 }
 .head_sidebar .head_sidebar_info .head_sidebar_title .active {
-  background: #aaa;
+  background: #67A2D1;
 }
 .head_sidebar .head_sidebar_info ul {
   height: 100%;
@@ -511,4 +520,80 @@
   font-size: 2.666666rem;
   line-height: 2.8rem;
   color: #021D30;
+}
+.photo_open,
+.bigImg_open {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  transform: scale(0);
+  transition: 0.4s;
+}
+.photo_wrap {
+  margin-top: 6rem;
+  transform: translateY(0);
+  position: absolute;
+}
+.photo_wrap li.img_box {
+  float: left;
+  width: 50%;
+  height: 50vw;
+}
+.photo_wrap li.img_box img {
+  width: 100%;
+  height: 100%;
+}
+.bigImg_wrap {
+  height: 100%;
+}
+.bigImg_wrap li {
+  float: left;
+  width: 100vw;
+  height: 100%;
+}
+.bigImg_wrap li img {
+  width: 100%;
+  height: 100%;
+}
+.photo_titie {
+  width: 100%;
+  height: 4rem;
+  position: absolute;
+  left: 0;
+  top: 3rem;
+  z-index: 5;
+  background: rgba(218, 216, 215, 0.7);
+  font-size: 2rem;
+  color: #fff;
+}
+.photo_titie .sel {
+  height: 4rem;
+  line-height: 4rem;
+  position: absolute;
+  top: 0;
+  right: 0.66666667rem;
+}
+.photo_titie .del_ico {
+  width: 4rem;
+  height: 4rem;
+  line-height: 4rem;
+  color: #fff;
+  font-size: 2.66666667rem;
+  text-align: center;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.photo_titie .back {
+  float: left;
+  font-size: 2rem;
+  display: none;
+  line-height: 4rem;
+}
+.photo_titie p {
+  text-align: center;
+  line-height: 4rem;
 }
